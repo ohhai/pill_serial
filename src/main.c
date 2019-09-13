@@ -24,6 +24,16 @@
 
 #include "general.h"
 
+
+#include <libopencm3/stm32/timer.h>
+
+uint8_t my_buf_rx1 = 'U';
+uint8_t my_buf_rx2 = 'Y';
+uint8_t my_buf_rx3 = 'W';
+
+void usbuart_run(int USBUSART_TIM, uint8_t *buf_rx_out, uint8_t *buf_rx_in, uint8_t *buf_rx, int CDCACM_UART_ENDPOINT);
+
+
 int
 main(int argc, char **argv)
 {
@@ -35,8 +45,17 @@ main(int argc, char **argv)
 	platform_init();
 #endif
 
+    for (int i = 0; i < 50000000; ++i)  asm("nop");
+
 	while (true) {
-        asm("nop");
+//         for (int i = 0; i < 1000000; ++i)  asm("nop");
+//         usbuart_run(TIM2, NULL, NULL, &my_buf_rx1, 5);
+
+        for (int i = 0; i < 1000000; ++i)  asm("nop");
+        usbuart_run(TIM3, NULL, NULL, &my_buf_rx2, 1);
+
+//         for (int i = 0; i < 1000000; ++i)  asm("nop");
+//         usbuart_run(TIM4, NULL, NULL, &my_buf_rx3, 3);
 	}
 
 	/* Should never get here */

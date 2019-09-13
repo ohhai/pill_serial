@@ -12,6 +12,8 @@ CFLAGS += -Wall -Wextra -Werror -Wno-char-subscripts\
 	-I.
 LDFLAGS += $(OPT_FLAGS)
 
+CFLAGS += -Wno-unused
+
 ifeq ($(ENABLE_DEBUG), 1)
 CFLAGS += -DENABLE_DEBUG
 endif
