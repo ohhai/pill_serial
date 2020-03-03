@@ -28,7 +28,16 @@
 
 #include <libopencm3/usb/usbd.h>
 
-#define CDCACM_PACKET_SIZE 	64
+/*
+ * Reducing the packet size to 32 is not enogh to have it working correctly. It will work for one bridge but there will still be timing issues when using more bridges concurrently. There is no simple fix and I also wonted to have forth on one USB serial port optionally so I have created a new project some time ago to achieve these goals if anybody is interrested: mecrisp_pillserial.
+ *
+ * https://github.com/ivpri/mecrisp_pillserial
+ *
+ * https://github.com/satoshinm/pill_serial/issues/1
+ * https://github.com/satoshinm/pill_serial/pull/11#issuecomment-582306197
+ * */
+
+#define CDCACM_PACKET_SIZE 	32
 
 extern usbd_device *usbdev;
 
